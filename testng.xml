@@ -1,5 +1,8 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="RestfulBookerApiSuite" verbose="1">
+    <listeners>
+        <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
+    </listeners>
     <test name="BookingLifecycleTests">
         <classes>
             <class name="com.automation.tests.HealthCheckTest"/>
@@ -7,6 +10,18 @@
             <class name="com.automation.tests.GetBookingTest"/>
             <class name="com.automation.tests.UpdateBookingTest"/>
             <class name="com.automation.tests.DeleteBookingTest"/>
+        </classes>
+    </test>
+
+    <test name="NegativeTests">
+        <classes>
+            <class name="com.automation.tests.NegativeBookingTest"/>
+        </classes>
+    </test>
+
+    <test name="FlakyTests">
+        <classes>
+            <class name="com.automation.tests.FlakyBookingTest"/>
         </classes>
     </test>
 </suite>

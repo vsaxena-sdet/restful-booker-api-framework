@@ -7,6 +7,13 @@ import com.automation.pojo.AuthResponse;
 import com.automation.pojo.Booking;
 import com.automation.pojo.BookingDates;
 import com.automation.pojo.BookingResponse;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import com.automation.annotations.Layer;
+import io.qameta.allure.Owner;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
 import io.restassured.response.Response;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -17,6 +24,10 @@ import static org.testng.Assert.assertEquals;
  * Test 5 - authenticates, deletes a booking via DELETE /booking/{id}, then
  * confirms it is actually gone with a follow-up GET returning 404.
  */
+@Epic("Restful Booker API")
+@Feature("Booking Management")
+@Layer("e2e")
+@Owner("qa-team")
 public class DeleteBookingTest extends BaseTest {
 
     private BookingApiClient client;
@@ -49,6 +60,8 @@ public class DeleteBookingTest extends BaseTest {
     }
 
     @Test(description = "DELETE /booking/{id} should remove the booking")
+    @Story("Delete Booking")
+    @Severity(SeverityLevel.NORMAL)
     public void deleteBookingShouldRemoveItPermanently() {
         Response deleteResponse = client.deleteBooking(bookingId, authToken);
         assertEquals(deleteResponse.getStatusCode(), 201, "Expected booking deletion to succeed for id " + bookingId);

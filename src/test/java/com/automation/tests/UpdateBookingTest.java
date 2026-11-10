@@ -7,6 +7,13 @@ import com.automation.pojo.AuthResponse;
 import com.automation.pojo.Booking;
 import com.automation.pojo.BookingDates;
 import com.automation.pojo.BookingResponse;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import com.automation.annotations.Layer;
+import io.qameta.allure.Owner;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
 import io.restassured.response.Response;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -17,6 +24,10 @@ import static org.testng.Assert.assertEquals;
  * Test 4 - authenticates to obtain a token, then fully replaces a booking
  * via PUT /booking/{id} and verifies the updated fields are reflected.
  */
+@Epic("Restful Booker API")
+@Feature("Booking Management")
+@Layer("e2e")
+@Owner("qa-team")
 public class UpdateBookingTest extends BaseTest {
 
     private BookingApiClient client;
@@ -49,6 +60,8 @@ public class UpdateBookingTest extends BaseTest {
     }
 
     @Test(description = "PUT /booking/{id} should update the booking details")
+    @Story("Update Booking")
+    @Severity(SeverityLevel.NORMAL)
     public void updateBookingShouldPersistNewDetails() {
         Booking updatedBooking = Booking.builder()
                 .firstname("Alice")

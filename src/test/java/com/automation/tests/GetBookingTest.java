@@ -5,6 +5,13 @@ import com.automation.client.BookingApiClient;
 import com.automation.pojo.Booking;
 import com.automation.pojo.BookingDates;
 import com.automation.pojo.BookingResponse;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import com.automation.annotations.Layer;
+import io.qameta.allure.Owner;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
 import io.restassured.response.Response;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -17,6 +24,10 @@ import static org.testng.Assert.assertEquals;
  * in {@code @BeforeClass} so this test is self-contained and does not
  * depend on test execution order against other classes.
  */
+@Epic("Restful Booker API")
+@Feature("Booking Management")
+@Layer("e2e")
+@Owner("qa-team")
 public class GetBookingTest extends BaseTest {
 
     private BookingApiClient client;
@@ -45,6 +56,8 @@ public class GetBookingTest extends BaseTest {
     }
 
     @Test(description = "GET /booking/{id} should return the previously created booking")
+    @Story("Retrieve Booking")
+    @Severity(SeverityLevel.NORMAL)
     public void getBookingByIdShouldReturnMatchingBooking() {
         Response response = client.getBooking(bookingId);
         assertEquals(response.getStatusCode(), 200, "Expected booking lookup to succeed for id " + bookingId);

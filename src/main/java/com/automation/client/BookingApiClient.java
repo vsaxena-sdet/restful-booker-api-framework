@@ -49,6 +49,13 @@ public class BookingApiClient {
                 .post("/booking");
     }
 
+    /** GET /booking - returns the list of all booking ids currently on the server. */
+    public Response getBookingIds() {
+        return given().spec(spec)
+                .when()
+                .get("/booking");
+    }
+
     /** GET /booking/{id} - fetches a single booking by id. */
     public Response getBooking(int bookingId) {
         return given().spec(spec)
